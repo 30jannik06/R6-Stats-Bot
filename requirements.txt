@@ -1,0 +1,4 @@
+siegeapi==6.3.4
+discord.py==2.4.0
+colorama==0.4.6
+python-dotenv==1.0.1
