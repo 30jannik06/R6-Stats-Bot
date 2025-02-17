@@ -1,6 +1,7 @@
 import datetime
 
 import discord
+from discord import app_commands
 from discord.ext import commands
 from discord import File
 
@@ -23,6 +24,13 @@ class Admin(commands.Cog):
     
     
     @discord.app_commands.command(name="stats", description="Remove User from Ticket")
+    @app_commands.choices(platform=[
+        app_commands.Choice(name="❌ WICHTIG", value="❌ WICHTIG"),
+        app_commands.Choice(name="🚨 DRINGEND", value="🚨 DRINGEND"),
+        app_commands.Choice(name="🔍 IN ÜBERPRÜFUNG", value="🔍 IN ÜBERPRÜFUNG"),
+        app_commands.Choice(name="🛠️ TECHNISCHE HILFE", value="🛠️ TECHNISCHE HILFE"),
+        app_commands.Choice(name="🚧 IN ARBEIT", value="🚧 IN ARBEIT")
+    ])
     async def stats(self, interaction: discord.Interaction, player_name: str, platform: str):
         stats = await get_player_stats(player_name, platform="uplay")
         #PLATFORM_URL_NAMES = {"uplay": "OSBOR_PC_LNCH_A", "psn": "OSBOR_PS4_LNCH_A", "xbl": "OSBOR_XBOXONE_LNCH_A", "xplay": "OSBOR_XPLAY_LNCH_A"}
