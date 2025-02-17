@@ -8,9 +8,9 @@ load_dotenv()
 UBISOFT_EMAIL = os.getenv("UBISOFT_EMAIL")
 UBISOFT_PASSW = os.getenv("UBIFOT_PASSW")
 
-async def get_player_stats(player_name: str):
+async def get_player_stats(player_name: str, platform: str):
     auth = Auth(UBISOFT_EMAIL, UBISOFT_PASSW)
-    player = await auth.get_player(name=player_name)
+    player = await auth.get_player(name=player_name, platform=platform)
     
     #Spieler-Infos Laden
     await player.load_persona()

@@ -23,8 +23,9 @@ class Admin(commands.Cog):
     
     
     @discord.app_commands.command(name="stats", description="Remove User from Ticket")
-    async def stats(self, interaction: discord.Interaction, player_name: str):
-        stats = await get_player_stats(player_name)
+    async def stats(self, interaction: discord.Interaction, player_name: str, platform: str):
+        stats = await get_player_stats(player_name, platform="uplay")
+        #PLATFORM_URL_NAMES = {"uplay": "OSBOR_PC_LNCH_A", "psn": "OSBOR_PS4_LNCH_A", "xbl": "OSBOR_XBOXONE_LNCH_A", "xplay": "OSBOR_XPLAY_LNCH_A"}
         #print(stats)
         
         nowRank: str = stats.ranked_profile.rank
