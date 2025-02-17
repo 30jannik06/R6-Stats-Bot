@@ -27,7 +27,6 @@ class Admin(commands.Cog):
         stats = await get_player_stats(player_name)
         #print(stats)
         
-        #profilePic: str = stats["Profile Pic"]
         nowRank: str = stats.ranked_profile.rank
         rank_parts = nowRank.split(" ")
         
@@ -66,7 +65,45 @@ class Admin(commands.Cog):
         rankedLosses: int = stats.ranked_profile.losses
         seasonalWl: float = (rankedWins / (rankedWins + rankedLosses)) * 100
         bans: str = "none"
-        seasonName: str = stats.ranked_profile.season_id
+        
+        SEASON_NAMES = {
+            3: "Black Ice",
+            4: "Dust Line",
+            5: "Skull Rain",
+            6: "Red Crow",
+            7: "Velvet Shell",
+            8: "Health",
+            9: "Blood Orchid",
+            10: "White Noise",
+            11: "Chimera",
+            12: "Para Bellum",
+            13: "Grim Sky",
+            14: "Wind Bastion",
+            15: "Burnt Horizon",
+            16: "Phantom Sight",
+            17: "Ember Rise",
+            18: "Shifting Tides",
+            19: "Void Edge",
+            20: "Steel Wave",
+            21: "Shadow Legacy",
+            22: "Neon Dawn",
+            23: "Crimson Heist",
+            24: "North Star",
+            25: "Crystal Guard",
+            26: "High Calibre",
+            27: "Demon Veil",
+            28: "Vector Glare",
+            29: "Brutal Swarm",
+            30: "Solar Raid",
+            31: "Commanding Force",
+            32: "Dread Factor",
+            33: "Heavy Mettle",
+            34: "Operation Deadly Omen",
+            35: "Operation Twin Shells",
+            36: "Operation Collision Point"
+        }
+
+        seasonName = SEASON_NAMES.get(stats.ranked_profile.season_id, "Unknown Season")
         year: str = stats.ranked_profile.season_code
         
         statsEmbed: discord.Embed = discord.Embed(description=f'Player information: **{name}**')
@@ -84,6 +121,40 @@ class Admin(commands.Cog):
         statsEmbed.timestamp = datetime.datetime.now(datetime.timezone.utc)
                 
         await interaction.response.send_message(embed=statsEmbed)
+        
+    @discord.app_commands.command(name="rank", description="Get actual Rank from User")
+    async def rank(self, interaction: discord.Interaction, player_name: str):
+        stats = await get_player_stats(player_name)
+        
+        name: str = stats.name
+        nowRank: str = stats.ranked_profile.rank
+        rank_parts = nowRank.split(" ")
+        
+        base_url = "https://static.stats.cc/siege/ranks/"
+        
+        if nowRank == "Unranked":
+            rankImg = f"{base_url}unranked-large.png"
+            rank_name = "Unranked"
+            rank_number = "N/A"
+        elif len(rank_parts) == 2:
+            rank_name = rank_parts[0].lower()
+            rank_number = rank_parts[1]
+            rankImg = f"{base_url}{rank_name}-{rank_number}-large.png"
+        elif nowRank == "Champions":  
+            rank_name = "champion"
+            rank_number = "star"
+            rankImg = f"{base_url}{rank_name}-{rank_number}-large.png"
+        else:
+            rank_name = nowRank  
+            rank_number = "N/A"
+            rankImg = f"{base_url}{rank_name}-large.png"
+        
+        rankEmbed: discord.Embed = discord.Embed(description=f'Player information: **{name}**')
+        rankEmbed.set_author(icon_url=stats.profile_pic_url, name=f'{name}')
+        rankEmbed.add_field(name="Season Rank:", value=nowRank)
+        rankEmbed.set_thumbnail(url=rankImg)
+        
+        await interaction.response.send_message(embed=rankEmbed)
     
 async def setup(client):
     await client.add_cog(Admin(client))
