@@ -3,8 +3,8 @@
 # ║                         CREATOR TAG                              ║
 # ║                                                                  ║
 # ║   Author:        30jannik06                                      ║
-# ║   Date:          14.02.2025                                      ║
-# ║   File:          main.py                                         ║
+# ║   Date:          30.08.2024                                      ║
+# ║   File:          ticketsystem.py                                 ║
 # ║                                                                  ║
 # ║   GitHub:        https://github.com/30jannik06                   ║
 # ║   Discord:       https://discordapp.com/users/268084996235853824 ║
@@ -25,27 +25,31 @@ from helper.utils import load_cogs, sync_commands
 load_dotenv()
 
 BOTTOKEN = os.getenv("TOKEN")
+MEMBERCOUNTCHANNELID = os.getenv("MEMBERCOUNTCHANNELID")
 
 client = commands.Bot(command_prefix="!", intents=discord.Intents.all())
+
 
 async def load_extension():
     for filename in os.listdir("./cogs"):
         if filename.endswith(".py"):
             await client.load_extension(f'cogs.{filename[:-3]}')
-            
+
 async def main():
     async with client:
         await load_extension()
-        
+
 def clear_console():
     if platform.system() == "Windows":
-        os.system("cls")
-    else:
+        os.system('cls')
+    else: 
         os.system("clear")
         
+
+
 @client.event
 async def on_ready():
-    cogList: list[str] = ['admin']
+    cogList: list[str] = ['admin', 'events']
 
     clear_console()
     print('╔════════════════════════════════════════════════════════╗')

@@ -1,16 +1,3 @@
-# ╔══════════════════════════════════════════════════════════════════╗
-# ║                                                                  ║
-# ║                         CREATOR TAG                              ║
-# ║                                                                  ║
-# ║   Author:        30jannik06                                      ║
-# ║   Date:          14.02.2025                                      ║
-# ║   File:          check_permission_utils.py                       ║
-# ║                                                                  ║
-# ║   GitHub:        https://github.com/30jannik06                   ║
-# ║   Discord:       https://discordapp.com/users/268084996235853824 ║
-# ║                                                                  ║
-# ╚══════════════════════════════════════════════════════════════════╝
-
 import discord
 
 async def check_permission(interaction: discord.Interaction, permission: str, error_message: str):

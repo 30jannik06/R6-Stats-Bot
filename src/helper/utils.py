@@ -1,16 +1,3 @@
-# ╔══════════════════════════════════════════════════════════════════╗
-# ║                                                                  ║
-# ║                         CREATOR TAG                              ║
-# ║                                                                  ║
-# ║   Author:        30jannik06                                      ║
-# ║   Date:          14.02.2025                                      ║
-# ║   File:          utils.py                                        ║
-# ║                                                                  ║
-# ║   GitHub:        https://github.com/30jannik06                   ║
-# ║   Discord:       https://discordapp.com/users/268084996235853824 ║
-# ║                                                                  ║
-# ╚══════════════════════════════════════════════════════════════════╝
-
 import os
 
 from helper.logging_utils import command
