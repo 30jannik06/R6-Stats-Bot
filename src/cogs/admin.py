@@ -159,3 +159,13 @@ class Admin(commands.Cog):
 async def setup(client):
     await client.add_cog(Admin(client))
     command(f'🛠️ Loaded Admin Slash Commands')
+
+#TODO:[WIP] /stats <Spielername> – Zeigt die allgemeinen Statistiken eines Spielers.
+#TODO:[WIP] /rank <Spielername> – Gibt den aktuellen Rang des Spielers aus.
+#TODO:[NOSTARTED] /loadout <Spielername> – Zeigt die bevorzugte Ausrüstung eines Spielers.
+#TODO:[NOSTARTED] /operator <Spielername> – Zeigt die meistgespielten Operatoren.
+#TODO:[NOSTARTED] /matchhistory <Spielername> – Zeigt die letzten Matches des Spielers.
+#TODO:[NOSTARTED] /leaderboard – Gibt eine Rangliste der besten Spieler aus.
+#TODO:[NOSTARTED] /mmr <Spielername> – Zeigt das Matchmaking-Rating eines Spielers.
+#TODO:[NOSTARTED] /seasonstats <Spielername> – Zeigt die aktuellen Season-Statistiken.
+#TODO:[NOSTARTED] /kd <Spielername> – Gibt das K/D-Verhältnis aus.
