@@ -23,3 +23,7 @@ def leave(message):
 def system(message):
   """Prints a system-related message to the console with magenta color."""
   print(f"{Fore.WHITE}║{Fore.MAGENTA}[SYSTEM] {Style.RESET_ALL}- {message}")
+  
+def error(message):
+    """Prints a error-related message to the console with red color."""
+    print(f"{Fore.Red}[SYSTEM] {Style.RESET_ALL}- {message}")
