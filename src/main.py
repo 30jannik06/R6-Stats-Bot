@@ -1,16 +1,3 @@
-# ╔══════════════════════════════════════════════════════════════════╗
-# ║                                                                  ║
-# ║                         CREATOR TAG                              ║
-# ║                                                                  ║
-# ║   Author:        30jannik06                                      ║
-# ║   Date:          30.08.2024                                      ║
-# ║   File:          ticketsystem.py                                 ║
-# ║                                                                  ║
-# ║   GitHub:        https://github.com/30jannik06                   ║
-# ║   Discord:       https://discordapp.com/users/268084996235853824 ║
-# ║                                                                  ║
-# ╚══════════════════════════════════════════════════════════════════╝
-
 import os
 import platform
 
@@ -25,7 +12,6 @@ from helper.utils import load_cogs, sync_commands
 load_dotenv()
 
 BOTTOKEN = os.getenv("TOKEN")
-MEMBERCOUNTCHANNELID = os.getenv("MEMBERCOUNTCHANNELID")
 
 client = commands.Bot(command_prefix="!", intents=discord.Intents.all())
 
@@ -39,7 +25,7 @@ async def main():
     async with client:
         await load_extension()
 
-def clear_console():
+def clear_console() -> None:
     if platform.system() == "Windows":
         os.system('cls')
     else: 
@@ -49,7 +35,7 @@ def clear_console():
 
 @client.event
 async def on_ready():
-    cogList: list[str] = ['admin', 'events']
+    cogList: list[str] = ['system']
 
     clear_console()
     print('╔════════════════════════════════════════════════════════╗')
